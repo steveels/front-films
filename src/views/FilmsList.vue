@@ -1,17 +1,17 @@
 <template>
   <div class="films-container">
-    <!-- Titre principal -->
+
     <h1 class="films-title">Liste des films</h1>
 
-    <!-- Boutons d'administration (visibles uniquement pour les administrateurs) -->
+   
     <div v-if="isAdmin" class="admin-buttons">
       <button @click="createPost" class="btn btn-primary">Ajouter un film</button>
       <button @click="createCateg" class="btn btn-secondary">Ajout & Gestion de catégorie</button>
     </div>
 
-    <!-- Conteneur principal pour les cartes de films -->
+   
     <div class="card-container">
-      <!-- Carte de film -->
+     
       <div class="film-card" v-for="film in AllfilmsData" :key="film.id">
         <div class="film-title">{{ film.title }}</div>
         <div class="film-content">{{ film.content }}</div>
@@ -19,14 +19,14 @@
         <div class="film-release-date">Date de sortie : {{ formatDate(film.date_de_sortie) }}</div>
         <button @click="viewDetail(film.id)" class="btn btn-info">Détails</button>
 
-        <!-- Bouton de like/unlike (visible uniquement pour les utilisateurs connectés) -->
+       
         <div v-if="isLoggedIn" class="like-button">
           <button @click="likeFilm(film.id)" :class="{ 'liked': film.liked }" class="btn btn-like">
             {{ film.liked ? 'Unlike' : 'Like' }}
           </button>
         </div>
 
-        <!-- Boutons d'administration (visibles uniquement pour les administrateurs) -->
+        
         <div v-if="isAdmin" class="admin-buttons">
           <button @click="editPost(film.id)" class="btn btn-warning">Modifier</button>
           <button @click="deletePost(film.id)" class="btn btn-danger">Supprimer</button>
